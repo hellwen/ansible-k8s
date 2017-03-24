@@ -1,0 +1,18 @@
+#
+#About: This will install docker
+#
+---
+- hosts: k8s_node
+  remote_user: root
+  roles:
+  - { role: common, tags: [ 'firewall', 'ntp', 'nfs', 'custome'] }
+  - role: docker
+  - { role: docker2thinpool, pv: /dev/vdb }
+  - role: docker-registry-client-ca
+  - role: flannel
+    vars:
+    - etcd_endpoints: http://192.168.72.128:2379,http://192.168.72.63:2379,http://192.168.72.233:2379
+    - etcd_prefix: /flannel/network
+  - role: kubernetes
+    vars:
+    - kube_master: 192.168.61.2
