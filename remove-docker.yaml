@@ -2,7 +2,7 @@
 #About: This will install docker
 #
 ---
-- hosts: k8s_node
+- hosts: k8s-cluster
   remote_user: root
   roles:
   - role: docker-remove

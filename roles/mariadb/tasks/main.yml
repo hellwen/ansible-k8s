@@ -1,3 +1,0 @@
----
-- include: install-mariadb.yml
-- include: install-automariadbbackup.yml
